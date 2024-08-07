@@ -10,3 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Posts {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String
+  published Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@index([slug])
+}
